@@ -1,17 +1,6 @@
-# A React Js and Node Js Boilerplate
-## Installation Instructions
+# Gasper
 
-Install nodemon and create-react-app globally using below command:
+<p align="center"><a href="#" target="_blank"><img width="200"src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/60/4074325060_502fb955-b055-4818-b9b2-bcebb9b65e79.png?cb=1604734898"></a></p>
 
-`$ npm i -D nodemon`
-
-`npm i -g create-react-app`
-
-Installation Instructions 🔧
-Clone the repo using git clone git@github.com:imranhsayed/react-node-boilerplate.git
-```cd google-maps-in-react
-npm install
-cd client
-npm install
-cd ..
-npm run dev
+Website where you could post info about a protest(what time, date, etc...) 
+so others can join, as well as rallies and other forms of protest
