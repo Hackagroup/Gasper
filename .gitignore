@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Node/React
+/node_modules
+package-lock.json
+.DS_STORE
