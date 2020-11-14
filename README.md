@@ -4,3 +4,12 @@
 
 Website where you could post info about a protest(what time, date, etc...) 
 so others can join, as well as rallies and other forms of protest
+
+
+
+<h2>In Develpoment<h2>
+<p>In order to run use</p>
+
+```
+npm start 
+```
