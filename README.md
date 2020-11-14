@@ -12,8 +12,15 @@ so others can join, as well as rallies and other forms of protest
 <p>In order to run use</p>
 
 ```
-npm install # Install Main Dir Packages
-cd client/gasper && npm install # Install React packages
+# Clone Repository
+git clone https://github.com/Hackagroup/Gasper
+cd Gasper
+
+# Install Packages
+npm install
+cd client/gasper && npm install
+
+# Run Program
 cd ../../ 
 npm start # Start the local server
 ```
