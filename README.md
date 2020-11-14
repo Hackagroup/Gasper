@@ -7,10 +7,13 @@ so others can join, as well as rallies and other forms of protest
 
 
 
-<h2>In Develpoment<h2>
+<h3>In Develpoment<h3>
+
 <p>In order to run use</p>
 
 ```
-npm install
-npm start 
+npm install # Install Main Dir Packages
+cd client/gasper && npm install # Install React packages
+cd ../../ 
+npm start # Start the local server
 ```
