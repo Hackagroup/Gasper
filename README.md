@@ -24,3 +24,6 @@ cd client/gasper && npm install
 cd ../../ 
 npm start # Start the local server
 ```
+
+
+<b>IMPORTANT : React Takes a while to start! Dont Shut off in middle of `npm start`</b>

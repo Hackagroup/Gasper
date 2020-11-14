@@ -1,9 +1,9 @@
 const express = require('express')
-router = express.Router()
+router_main = express.Router()
 
 
 main = require('../controllers/main')
-router.get('/', main.hello)
+router_main.get('/', main.hello)
 
 
-module.exports = router
+module.exports = router_main
