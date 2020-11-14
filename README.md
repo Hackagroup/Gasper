@@ -11,5 +11,6 @@ so others can join, as well as rallies and other forms of protest
 <p>In order to run use</p>
 
 ```
+npm install
 npm start 
 ```
