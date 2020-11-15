@@ -13,6 +13,6 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
 fi
 
 npm install
-cd client/gasper && npm install
-cd ../../ 
+cd client && npm install
+cd ../ 
 npm start # Start the local server  
