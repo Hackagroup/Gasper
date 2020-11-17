@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Hackagroup/Gasper#readme",
   "dependencies": {
+    "azure-storage": "^2.10.3",
     "concurrently": "^5.3.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",

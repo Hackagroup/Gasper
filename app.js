@@ -5,6 +5,10 @@
 const express = require('express')
 app = express()
 
+//azure 
+const azure = require('azure-storage');
+const db = azure.createTableService("sqlvabklb6rv3b2pbm", "0Htv8fG4/eqehFwaLfiqW2rlzhHW279W8rH7jeeV85ny8s7IREaMowcvWMFpemCPbm8vgl76iij6KgcAgejMtQ==")
+
 // .env file configuration
 require('dotenv').config()
 
@@ -16,10 +20,6 @@ require('dotenv').config()
 
 const main_ctrl = require('./controllers/main')
 app.use('/api/', main_ctrl.hello)
-  
-
-const login_ctrl = require('./controllers/login')
-app.use('/login/',login_ctrl.main)
   
 const singlePost_ctrl = require('./controllers/singlePost')
 app.use('/post/', singlePost_ctrl.post)
@@ -34,7 +34,7 @@ const search_ctrl = require('./controllers/search')
 app.use('/search/', search_ctrl.search)
 
 //React Runs on Port 3000  
-const PORT = process.env.PORT || 3002 
+const PORT = process.env.PORT || 3002
 
 app.listen(PORT, ()=>{
     console.log("Listening on Port " + PORT)
