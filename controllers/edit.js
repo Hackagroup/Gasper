@@ -1,5 +1,9 @@
 exports.edit = (req, res) => {
     res.json({
-        "main": ["Edit single post"]
+        "main": [
+            Post.findByIdAndUpdate(req.params.id)
+              .populate('location')
+              .exec(callback)
+        ]
     })
 }

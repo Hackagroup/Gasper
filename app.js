@@ -5,9 +5,15 @@
 const express = require('express')
 app = express()
 
+//Mongodb
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb+srv://Vitoria_Santos:<password>@cluster0.uft35.mongodb.net/<dbname>?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+
 //azure 
-const azure = require('azure-storage');
-const db = azure.createTableService("sqlvabklb6rv3b2pbm", "0Htv8fG4/eqehFwaLfiqW2rlzhHW279W8rH7jeeV85ny8s7IREaMowcvWMFpemCPbm8vgl76iij6KgcAgejMtQ==")
+// const azure = require('azure-storage');
+// const db = azure.createTableService("sqlvabklb6rv3b2pbm", "0Htv8fG4/eqehFwaLfiqW2rlzhHW279W8rH7jeeV85ny8s7IREaMowcvWMFpemCPbm8vgl76iij6KgcAgejMtQ==")
 
 // .env file configuration
 require('dotenv').config()
@@ -32,6 +38,8 @@ app.use('/delete/', delete_ctrl.delete)
 
 const search_ctrl = require('./controllers/search')
 app.use('/search/', search_ctrl.search)
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //React Runs on Port 3000  
 const PORT = process.env.PORT || 3002

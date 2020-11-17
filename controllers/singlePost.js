@@ -1,5 +1,7 @@
 exports.post = (req,res) => {
     res.json({
-        "main":["Single Post"]
+        "main":[Post.findById(req.params.id)
+            .exec(callback)
+        ]
     })
 }
