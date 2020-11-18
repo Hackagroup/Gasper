@@ -6,10 +6,15 @@ const express = require('express')
 app = express()
 
 //Mongodb
-const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://Vitoria_Santos:<password>@cluster0.uft35.mongodb.net/<dbname>?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection;
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://GasperHackathon:GasperAgain@cluster0.i72yt.mongodb.net/Gasper?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 // .env file configuration
 require('dotenv').config()
@@ -22,6 +27,9 @@ require('dotenv').config()
 
 const main_ctrl = require('./controllers/main')
 app.use('/api/', main_ctrl.hello)
+
+const search_ctrl = require('./controllers/search')
+app.use('/search/', search_ctrl.search)
   
 const singlePost_ctrl = require('./controllers/singlePost')
 app.use('/post/', singlePost_ctrl.post)
@@ -32,10 +40,7 @@ app.use('/edit/', edit_ctrl.edit)
 const delete_ctrl = require('./controllers/delete')
 app.use('/delete/', delete_ctrl.delete)
 
-const search_ctrl = require('./controllers/search')
-app.use('/search/', search_ctrl.search)
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+client.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //React Runs on Port 3000  
 const PORT = process.env.PORT || 3002

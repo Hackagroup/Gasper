@@ -1,5 +1,9 @@
+const Post = require('../models/posts')
+
 exports.delete = (req,res) => {
     res.json({
-        "main":["Delete post with id"]
+        "main":[
+                Post.findByIdAndRemove(req.params.id).populate('content').populate('content').exec(callback)
+            ]
     })
 }
