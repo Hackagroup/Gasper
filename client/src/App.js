@@ -5,7 +5,7 @@ import './styles/calendar.css'
 
 import { Main } from './components/main'
 import { Bar }  from './components/topbar'
-import { MainCalendar } from './components/content'
+import MainCalendar from './components/content'
 
 
 function App() {
