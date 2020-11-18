@@ -28,7 +28,7 @@ export const Main = () => {
 
     return(
         <div>
-            <h1>Hello Social Justice Warrior!</h1>
+            <h3>Hello Social Justice Warrior!</h3>
         </div>
     )
 }

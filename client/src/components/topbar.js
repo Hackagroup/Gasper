@@ -6,16 +6,22 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import GasperIco from '../static/GasperG.svg'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
+        color: "white",
+        fontFamily: 'Museo Slab',
+        //fontStyle: 'normal',
+        fontSize: 40
     },
 }));
 
@@ -23,15 +29,14 @@ const useStyles = makeStyles((theme) => ({
 export const Bar = () => {
     const classes = useStyles();
     return (
-        <AppBar position="static">
+        <AppBar position="static" >
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
+                <IconButton edge="start" color="white" aria-label="menu">
+                    <img src={GasperIco} height={30} width={30} />
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                    News
+                <Typography variant="h6" className={classes.title} color="Red">
+                    Gasper
                 </Typography>
-                <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
     )

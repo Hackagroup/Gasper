@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import './styles/calendar.css'
 
 import { Main } from './components/main'
 import { Bar }  from './components/topbar'
@@ -11,8 +12,10 @@ function App() {
   return (
     <div className="App">
       <Bar />
-      <Main />
-      <MainCalendar />
+      {/* <Main /> */}
+      <div class = "main_calendar_div">
+        <MainCalendar />
+      </div>
     </div>
   );
 }

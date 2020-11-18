@@ -12,6 +12,8 @@ import {
 
 import { appointments } from '../static/calendar-data';
 
+import { Main } from './main'
+
 export const MainCalendar = () => {
     const data = appointments
     return (
@@ -20,8 +22,7 @@ export const MainCalendar = () => {
           data={data}
         >
           <ViewState
-            defaultCurrentDate="2018-07-27"
-          />
+            defaultCurrentDate="2018-07-27"/>
           <MonthView />
           <Toolbar />
           <DateNavigator />
