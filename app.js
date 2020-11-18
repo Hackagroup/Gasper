@@ -11,10 +11,6 @@ const mongoDB = 'mongodb+srv://Vitoria_Santos:<password>@cluster0.uft35.mongodb.
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 
-//azure 
-// const azure = require('azure-storage');
-// const db = azure.createTableService("sqlvabklb6rv3b2pbm", "0Htv8fG4/eqehFwaLfiqW2rlzhHW279W8rH7jeeV85ny8s7IREaMowcvWMFpemCPbm8vgl76iij6KgcAgejMtQ==")
-
 // .env file configuration
 require('dotenv').config()
 
