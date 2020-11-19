@@ -19,8 +19,7 @@ import { firebase_data } from '../firebase/firebase-posts'
 
 
 const today = new Date()
-const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
-
+const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()) 
 
 
 class MainCalendar extends React.PureComponent {
@@ -41,19 +40,19 @@ class MainCalendar extends React.PureComponent {
             if (added) {
                 const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
                 data = [...data, { id: startingAddedId, ...added }];
+                console.log(data)
                 this.setData(data)
             }
             if (changed) {
-                console.log("UPDATING DATA")
                 data = data.map(appointment => (
                     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-                this.setData(data)
+        
+                this.updateData(data)
             }   
             if (deleted !== undefined) {
                 data = data.filter(appointment => appointment.id !== deleted);
+                this.deleteData(deleted)
             }
-            console.log(data)
-            console.log("PRINTED")
             return { data }; 
         });
     }
@@ -61,7 +60,6 @@ class MainCalendar extends React.PureComponent {
     setData(data_json){
         alert("Form Submitted!")
         const submit = () => {
-            let data = { theme: "My theme" };
             fetch("/add", {
                 method: "post",
                 headers: {
@@ -69,20 +67,50 @@ class MainCalendar extends React.PureComponent {
                 },
                 body: JSON.stringify(data_json),
             })
-                .then((res) => res.json())
-                .then((result) => {
-                    console.log(result);
-                });
+                .then((res) => {
+                    return res.json()
+                })
         };
-
         submit()
+    }
 
+    updateData(data_json){
+        alert("Form Updated!")
+        const submit = () => {
+            fetch("/update", {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data_json),
+            })
+                .then((res) => {
+                    return res.json()
+                })
+        };
+        submit()
+    }
+
+    deleteData(id){
+        const submit = () => {
+            fetch("/del", {
+                method: "delete",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({name:id}),
+            })
+                .then((res) => {
+                    return res.json()
+                })
+        };
+        submit()
     }
 
     componentDidMount(){
         firebase_data.then((result) => {
             this.setState({
-                data: result
+                 data: result
             })
         })
     }
@@ -119,10 +147,6 @@ class MainCalendar extends React.PureComponent {
                     type="numberEditor">
                         <AppointmentForm.TextEditor placeholder="This is my placeholder!" />
                     </AppointmentForm>
-                   
-
-
-                    
                 
                 </Scheduler>
             </Paper>
@@ -133,21 +157,3 @@ class MainCalendar extends React.PureComponent {
 
 
 export default MainCalendar
-// export const MainCalendar = () => {
-//     const data = appointments
-//     return (
-//       <Paper>
-//         <Scheduler
-//           data={data}
-//         >
-//           <ViewState
-//             defaultCurrentDate="2018-07-27"/>
-//           <MonthView />
-//           <Toolbar />
-//           <DateNavigator />
-//           <TodayButton />
-//           <Appointments />
-//         </Scheduler>
-//       </Paper>
-//     );
-// }

@@ -86,8 +86,23 @@ app.post('/add', (req,res) => {
     postsRef.set(req.body)
 })
 
+app.put('/update', (req,res) => {
+    postsRef.set(req.body)
+})
+
+app.delete('/del', (req,res) => {
+    let id = (parseInt(req.body["name"]))
+    postsRef.child(id).remove()
+                      .then(()=>{
+                          console.log("Succesfully Deleted");
+                      })
+                      .catch((e)=>{
+                          console.log("Error Deleting" + e)
+                      })
+})
+
 app.get('/get', (req,res) => {
-    postsRef.on("value", function (snapshot) { 
+    postsRef.once("value", function (snapshot) { 
         res.json(snapshot.val());
     }, function (errorObject) {
         res.send("The read failed: " + errorObject.code);
