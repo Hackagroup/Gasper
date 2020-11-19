@@ -50,6 +50,7 @@ app.use('/delete/', delete_ctrl.delete)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //React Runs on Port 3000  
+//NodeJS runs on Port 8000
 const PORT = process.env.PORT || 8000
 
 app.listen(PORT, ()=>{
