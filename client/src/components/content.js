@@ -14,7 +14,7 @@ import {
     TodayButton,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { appointments } from '../static/calendar-data';
+
 import { firebase_data } from '../firebase/firebase-posts'
 
 import { Main } from './main'
@@ -35,9 +35,8 @@ class MainCalendar extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            data: appointments,
             currentDate: today_str,
-            completeData: []
+            data : []
         };
         
         this.commitChanges = this.commitChanges.bind(this);
@@ -53,15 +52,17 @@ class MainCalendar extends React.PureComponent {
                 this.setData(data)
             }
             if (changed) {
+                console.log("UPDATING DATA")
                 data = data.map(appointment => (
                     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
+                this.setData(data)
             }   
             if (deleted !== undefined) {
                 data = data.filter(appointment => appointment.id !== deleted);
             }
             console.log(data)
             console.log("PRINTED")
-            return { data };
+            return { data }; 
         });
     }
 
@@ -89,7 +90,7 @@ class MainCalendar extends React.PureComponent {
     componentDidMount(){
         firebase_data.then((result) => {
             this.setState({
-                completeData: result
+                data: result
             })
         })
     }
@@ -98,14 +99,12 @@ class MainCalendar extends React.PureComponent {
       render() {
         const { currentDate, data } = this.state;
         
-        console.log(this.state.completeData)
-      
 
         return (
 
             <Paper>
                 <Scheduler
-                data={data}
+                data={this.state.data}
                 >
                 <ViewState
                         defaultCurrentDate={currentDate}
