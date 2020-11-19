@@ -6,9 +6,9 @@ const mongoose = require("mongoose")
 // express 
 const express = require('express')
 app = express()
-
+app.set('view engine', 'jade');
 //Mongodb
-const mongoDB = "mongodb+srv://GasperHackathon:GasperAgain@cluster0.i72yt.mongodb.net/Gasper?retryWrites=true&w=majority";
+const mongoDB = 'mongodb+srv://Gasper:Gasper1@cluster0.w0zgo.mongodb.net/GasperretryWrites=true&w=majority';
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
