@@ -2,23 +2,15 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const Post = new Schema(
+const PostSchema = new Schema(
   {
     title: {
         type: String,
         required: false
       },
-      author: {
-        type: String,
-        required: true
-      },
       content: {
         type: String,
         required: true
-      },
-      location: {
-          type: String,
-          require: true
       },
       date: {
         type: Date,
@@ -26,3 +18,5 @@ const Post = new Schema(
       },
   }
 );
+
+module.exports = mongoose.model('Post', PostSchema);

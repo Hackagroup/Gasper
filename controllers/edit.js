@@ -1,12 +1,13 @@
 const Post = require('../models/posts')
+const Mongoose = require("mongoose")
 
 exports.edit = (req, res) => {
-    res.json({
-        "main": [
+    async.parallel({
+        Post: function(callback){
             Post.findByIdAndUpdate(req.params.id)
-              .populate('location')
+              .populate('title')
               .populate('content')
               .exec(callback)
-        ]
-    })
+        }      
+    })          
 }
