@@ -81,9 +81,15 @@ const delete_ctrl = require('./controllers/delete')
 app.use('/delete/', delete_ctrl.delete)
 
 app.post('/add', (req,res) => {
-    //console.log(req.body)
     postsRef.set(req.body)
-    //res.send("POST")
+})
+
+app.get('/get', (req,res) => {
+    postsRef.on("value", function (snapshot) { 
+        res.json(snapshot.val());
+    }, function (errorObject) {
+        res.send("The read failed: " + errorObject.code);
+    });
 })
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

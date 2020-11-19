@@ -15,11 +15,21 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { appointments } from '../static/calendar-data';
+import { firebase_data } from '../firebase/firebase-posts'
 
 import { Main } from './main'
 
 const today = new Date()
 const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
+
+
+async function getData() {
+    firebase_data.then((data) => {
+        return data
+    })
+}
+
+
 
 class MainCalendar extends React.PureComponent {
     constructor(props) {
@@ -27,6 +37,7 @@ class MainCalendar extends React.PureComponent {
         this.state = {
             data: appointments,
             currentDate: today_str,
+            completeData: []
         };
         
         this.commitChanges = this.commitChanges.bind(this);
@@ -56,7 +67,6 @@ class MainCalendar extends React.PureComponent {
 
     setData(data_json){
         alert("Form Submitted!")
-
         const submit = () => {
             let data = { theme: "My theme" };
             fetch("/add", {
@@ -76,8 +86,21 @@ class MainCalendar extends React.PureComponent {
 
     }
 
+    componentDidMount(){
+        firebase_data.then((result) => {
+            this.setState({
+                completeData: result
+            })
+        })
+    }
+
+
       render() {
         const { currentDate, data } = this.state;
+        
+        console.log(this.state.completeData)
+      
+
         return (
 
             <Paper>
@@ -90,7 +113,7 @@ class MainCalendar extends React.PureComponent {
                 <EditingState
                         onCommitChanges={this.commitChanges}
                     />
-                <IntegratedEditing />
+                <IntegratedEditing /> 
                 <MonthView />
                 <ConfirmationDialog />
                 <Toolbar />
