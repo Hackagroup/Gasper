@@ -3,7 +3,7 @@
 Website where you could post info about a protest (what time, date, etc...) 
 so others can join, as well as rallies and other forms of protest.
 
-<h3>In develpoment</h3>
+# Developers
 
 <p>In order to run, use:</p>
 
@@ -17,7 +17,6 @@ bash setup.sh
 ```
 
 <b>IMPORTANT : React takes a while to start! Don't turn off in the middle of `npm start`.</b>
-
 
 
 # FAQ
