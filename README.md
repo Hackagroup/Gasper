@@ -17,7 +17,7 @@ This app was built using React, Node, and MongoDB.
 
 Microsoft Azure was used for deploying this website! 
 
-All the code was written with the best Code Editor in the globe... VSCode! :)
+All the code was written with the best Code Editor in the World... VSCode! :)
 
 
 # Usage

@@ -58,7 +58,7 @@ class MainCalendar extends React.PureComponent {
                 data={data}
                 >
                 <ViewState
-                        currentDate={currentDate}
+                        defaultCurrentDate={currentDate}
                     />
                 <EditingState
                         onCommitChanges={this.commitChanges}
@@ -77,6 +77,7 @@ class MainCalendar extends React.PureComponent {
                 <AppointmentForm />
                 </Scheduler>
             </Paper>
+
 
         );
     }
