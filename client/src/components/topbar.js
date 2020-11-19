@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,10 +32,10 @@ export const Bar = () => {
     return (
         <AppBar position="static" >
             <Toolbar>
-                <IconButton edge="start" color="white" aria-label="menu">
+                <IconButton edge="start" aria-label="menu">
                     <img src={GasperIco} height={30} width={30} />
                 </IconButton>
-                <Typography variant="h6" className={classes.title} color="Red">
+                <Typography variant="h6" className={classes.title}>
                     Gasper
                 </Typography>
             </Toolbar>

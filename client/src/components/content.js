@@ -18,21 +18,24 @@ import { appointments } from '../static/calendar-data';
 
 import { Main } from './main'
 
-class MainCalendar extends React.PureComponent {
-    constructor(props){
-        super(props)
-        let today = new Date();
-        this.state = {
-            appos : appointments,
-            currentDate: String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
-        }
+const today = new Date()
+const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
 
-        this.commit = this.commitChanges.bind(this)
+class MainCalendar extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: appointments,
+            currentDate: today_str,
+        };
+        
+        this.commitChanges = this.commitChanges.bind(this);
     }
 
     commitChanges({ added, changed, deleted }) {
         this.setState((state) => {
             let { data } = state;
+            console.log(added,changed,deleted)
             if (added) {
                 const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
                 data = [...data, { id: startingAddedId, ...added }];
@@ -40,7 +43,7 @@ class MainCalendar extends React.PureComponent {
             if (changed) {
                 data = data.map(appointment => (
                     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-            }
+            }   
             if (deleted !== undefined) {
                 data = data.filter(appointment => appointment.id !== deleted);
             }
@@ -50,7 +53,6 @@ class MainCalendar extends React.PureComponent {
 
       render() {
         const { currentDate, data } = this.state;
-
         return (
 
             <Paper>
@@ -74,10 +76,14 @@ class MainCalendar extends React.PureComponent {
                         showOpenButton
                         showDeleteButton
                     />
-                <AppointmentForm />
+                <AppointmentForm>
+                        <AppointmentForm.TextEditorProps
+                            placeholder="This is the placeholder"
+                        />
+                    </AppointmentForm>
+                
                 </Scheduler>
             </Paper>
-
 
         );
     }

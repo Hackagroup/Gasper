@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Bar />
       {/* <Main /> */}
-      <div class = "main_calendar_div">
+      <div className = "main_calendar_div">
         <MainCalendar />
       </div>
     </div>
