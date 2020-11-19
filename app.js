@@ -7,6 +7,13 @@ const mongoose = require("mongoose")
 const express = require('express')
 app = express()
 
+// Firebase
+const firebase = require('firebase');
+const admin = require("firebase-admin");
+
+const serviceAccount = require("./config/firebase.json");
+
+
 //Mongodb
 const mongoDB = "mongodb+srv://GasperHackathon:GasperAgain@cluster0.i72yt.mongodb.net/Gasper?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -25,6 +32,32 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // .env file configuration
 require('dotenv').config()
+
+
+
+app.use(express.json()); //Used to parse JSON bodies
+
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://gasper-c3912.firebaseio.com"
+});
+
+// Get a database reference to our blog
+let fb_db = admin.database();
+let ref = fb_db.ref("data");
+
+let postsRef = ref.child("posts");
+
+
+// let app = firebase.initializeApp({
+//     apiKey: '<your-api-key>',
+//     authDomain: '<your-auth-domain>',
+//     databaseURL: '<your-database-url>',
+//     projectId: '<your-cloud-firestore-project>',
+//     storageBucket: '<your-storage-bucket>',
+//     messagingSenderId: '<your-sender-id>'
+// });
 
  
 // This is the main router
@@ -46,6 +79,12 @@ app.use('/edit/', edit_ctrl.edit)
 
 const delete_ctrl = require('./controllers/delete')
 app.use('/delete/', delete_ctrl.delete)
+
+app.post('/add', (req,res) => {
+    //console.log(req.body)
+    postsRef.set(req.body)
+    //res.send("POST")
+})
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

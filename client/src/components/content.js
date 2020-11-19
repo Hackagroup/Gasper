@@ -39,6 +39,7 @@ class MainCalendar extends React.PureComponent {
             if (added) {
                 const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
                 data = [...data, { id: startingAddedId, ...added }];
+                this.setData(data)
             }
             if (changed) {
                 data = data.map(appointment => (
@@ -47,8 +48,32 @@ class MainCalendar extends React.PureComponent {
             if (deleted !== undefined) {
                 data = data.filter(appointment => appointment.id !== deleted);
             }
+            console.log(data)
+            console.log("PRINTED")
             return { data };
         });
+    }
+
+    setData(data_json){
+        alert("Form Submitted!")
+
+        const submit = () => {
+            let data = { theme: "My theme" };
+            fetch("/add", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data_json),
+            })
+                .then((res) => res.json())
+                .then((result) => {
+                    console.log(result);
+                });
+        };
+
+        submit()
+
     }
 
       render() {
@@ -76,11 +101,14 @@ class MainCalendar extends React.PureComponent {
                         showOpenButton
                         showDeleteButton
                     />
-                <AppointmentForm>
-                        <AppointmentForm.TextEditorProps
-                            placeholder="This is the placeholder"
-                        />
+                <AppointmentForm
+                    type="numberEditor">
+                        <AppointmentForm.TextEditor placeholder="This is my placeholder!" />
                     </AppointmentForm>
+                   
+
+
+                    
                 
                 </Scheduler>
             </Paper>
