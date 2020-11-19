@@ -17,17 +17,9 @@ import {
 
 import { firebase_data } from '../firebase/firebase-posts'
 
-import { Main } from './main'
 
 const today = new Date()
 const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
-
-
-async function getData() {
-    firebase_data.then((data) => {
-        return data
-    })
-}
 
 
 

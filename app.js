@@ -13,6 +13,8 @@ const admin = require("firebase-admin");
 
 const serviceAccount = require("./config/firebase.json");
 
+// CORS
+const cors = require('cors')
 
 //Mongodb
 const mongoDB = 'mongodb+srv://Gasper:Gasper1@cluster0.w0zgo.mongodb.net/GasperretryWrites=true&w=majority';
@@ -34,7 +36,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 require('dotenv').config()
 
 
-
+app.use(cors()) // Use this to avoid Cross Origin Errors
 app.use(express.json()); //Used to parse JSON bodies
 
 
