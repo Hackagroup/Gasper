@@ -23,6 +23,7 @@ app.use(cors()) // Use this to avoid Cross Origin Errors
 app.use(express.json()); //Used to parse JSON bodies
 
 
+// Initalize Firebase
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://gasper-c3912.firebaseio.com"
@@ -70,6 +71,7 @@ app.get('/get', (req,res) => {
 // NodeJS runs on Port 3001 || 8000(if fail)
 const PORT = process.env.PORT || 8000
 
+// Finnaly listen for requests
 app.listen(PORT, ()=>{
     console.log("Listening on Port " + PORT)
 })

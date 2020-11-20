@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/c40704d4-86f7-4931-b2db-6eb376e7edfa/resourceGroups/Gasper/providers/Microsoft.Web/sites/Gasper"
+}

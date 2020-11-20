@@ -10,14 +10,18 @@
 <a href="https://code.visualstudio.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="visual code" width="40" height="40"/> </a>
 </div>
 <br>
+<br>
+
+[![Build Status](https://github.com/floooh/chips/workflows/build_and_test/badge.svg)](https://github.com/Hackagroup/Gasper)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 
 
-Website where you could post info about a protest (what time, date, etc...) 
-so others can join, as well as rallies and other forms of protest.
+
+Website where you could post info about a protest on a calendar (what time, date, etc...) so others can join, as well as rallies, protests, marches, and other forms of social justice gatherings
 
 This app was built using React, Node, and Firebase. 
 
-Microsoft Azure was used for deploying this website! 
+Microsoft Azure was used for deploying this website! Deployed [HERE]() 
 
 All the code was written with the best Code Editor in the World... VSCode! :)
 
