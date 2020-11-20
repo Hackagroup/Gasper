@@ -6,14 +6,15 @@
 <a href="https://nodejs.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" alt="javascript" width="40" height="40"/> </a>
 <a href="https://nodejs.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" alt="javascript" width="40" height="40"/> </a>
 <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> 
-<a href="https://azure.microsoft.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" alt="gcp" width="40" height="40"/> </a>
 <a href="https://code.visualstudio.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="visual code" width="40" height="40"/> </a>
+<a href="https://azure.microsoft.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" alt="gcp" width="40" height="40"/> </a>
+<a href="https://aws.amazon.com" target="_blank"> <img src="https://devicons.github.io/devicon/devicon.git/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> 
 </div>
 <br>
 <br>
 
 [![Build Status](https://github.com/floooh/chips/workflows/build_and_test/badge.svg)](https://github.com/Hackagroup/Gasper)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://3.135.233.189/)
 
 
 
@@ -21,7 +22,9 @@ Website where you could post info about a protest on a calendar (what time, date
 
 This app was built using React, Node, and Firebase. 
 
-Microsoft Azure was used for deploying this website! Deployed [HERE]() 
+Pipelined sucessfully by Microsoft Azure! 
+
+Deployed sucessfully by AWS [HERE](http://3.135.233.189/) 
 
 All the code was written with the best Code Editor in the World... VSCode! :)
 
