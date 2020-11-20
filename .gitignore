@@ -105,5 +105,5 @@ package-lock.json
 .DS_STORE
 
 # Etc
-.vscode
-.github
+.vscode/
+.github/
