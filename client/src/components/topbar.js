@@ -1,3 +1,5 @@
+// Author : Amanuel
+
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+// Top Bar REACT Component
+// which uses above style for text
 export const Bar = () => {
     const classes = useStyles();
     return (

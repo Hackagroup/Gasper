@@ -1,3 +1,6 @@
+// Author : Amanuel
+// !#boilerplate
+
 import React from 'react'
 
 export const Main = () => {

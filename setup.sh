@@ -1,4 +1,5 @@
-#Install Dependencies
+# Author : Amanuel
+# Install Dependencies
 
 echo "SETTING UP DEPENDENCIES"
 if [ "$(uname)" == "Darwin" ]; then

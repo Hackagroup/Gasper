@@ -23,8 +23,7 @@ All the code was written with the best Code Editor in the World... VSCode! :)
 
 
 # Usage
-
-Gif of app coming soon...
+![First Gif](https://media1.giphy.com/media/vVFmFEeCYPQpS3fd3S/giphy.gif)
 
 # Developers
 

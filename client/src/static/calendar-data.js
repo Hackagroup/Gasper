@@ -1,4 +1,6 @@
 
+// Author : Amanuel
+
 export const appointments = [
     {
         title: 'Website Re-Design Plan',

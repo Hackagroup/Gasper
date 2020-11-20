@@ -1,9 +1,10 @@
+// Author : Amanuel
+
 import React from "react";
 import Paper from '@material-ui/core/Paper';
 import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
-    DayView,
     MonthView,
     Toolbar,
     DateNavigator,
@@ -15,14 +16,20 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 
+// Firebase Current Live Data
 import { firebase_data } from '../firebase/firebase-posts'
 
 
+// Store today's date
 const today = new Date()
 const today_str = String(today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()) 
 
 
+// Calendar component
 class MainCalendar extends React.PureComponent {
+    
+    // Constructor sets todays date
+    // and all appointments
     constructor(props) {
         super(props);
         this.state = {
@@ -33,30 +40,36 @@ class MainCalendar extends React.PureComponent {
         this.commitChanges = this.commitChanges.bind(this);
     }
 
+    // Runs when appointments modified
     commitChanges({ added, changed, deleted }) {
         this.setState((state) => {
             let { data } = state;
             data = this.removeNullVals(data)
             let ret_data = []
-
+            
+            // When added just add to data arr and FIREBASE.set()
             if (added) {
                 const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
                 data = [...data, { id: startingAddedId, ...added }];
                 this.setData(data)
             }
+            // When updated update data arr and FIREBASE.set()
             if (changed) {
                 data = data.map(appointment => (
                     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
         
                 this.updateData(data)
             }   
+            // When deleted delete record and FIREBASE.remove()
             if (deleted !== undefined) {
                 this.data = data.filter(appointment => appointment.id !== deleted);
                 this.deleteData(deleted,data)
                 ret_data = this.data
             }
             
-            if(ret_data!=[]){
+
+            // Deals with "remove" bug
+            if(ret_data.length!==0){
                 data = ret_data
             }
 
@@ -64,6 +77,9 @@ class MainCalendar extends React.PureComponent {
         });
     }
 
+    // Makes Call to /add 
+    // For express to listen and 
+    // add to database
     setData(data_json){
         const submit = () => {
             fetch("/add", {
@@ -80,6 +96,9 @@ class MainCalendar extends React.PureComponent {
         submit()
     }
 
+    // Makes call to /update 
+    // For express to listen and
+    // update database
     updateData(data_json){
         const submit = () => {
             fetch("/update", {
@@ -96,6 +115,9 @@ class MainCalendar extends React.PureComponent {
         submit()
     }
 
+    // Makes call to /delete
+    // For express to listen and
+    // delete record from database
     deleteData(id,data_json){
         const submit = () => {
             fetch("/del", {
@@ -115,6 +137,8 @@ class MainCalendar extends React.PureComponent {
         submit()
     }
 
+    // Component Lifecycle to 
+    // Keep on updating appointments  
     componentDidMount(){
         firebase_data.then((result) => {
             this.setState({
@@ -123,16 +147,19 @@ class MainCalendar extends React.PureComponent {
         })
     }
 
+    // Custom function to remove null values
     removeNullVals(A){
         return A.filter(elem => elem!=null)
     }
 
-    
-    render() {
-        const { currentDate, data } = this.state;
-        
 
+    // Whats rendered through the screen!
+    render() {
+
+        // Recieve data and remove all null values
+        const { currentDate, data } = this.state;
         let pure_data = this.removeNullVals(data)
+
         return (
             <Paper>
                 <Scheduler
