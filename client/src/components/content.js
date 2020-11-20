@@ -36,11 +36,12 @@ class MainCalendar extends React.PureComponent {
     commitChanges({ added, changed, deleted }) {
         this.setState((state) => {
             let { data } = state;
-            console.log(added,changed,deleted)
+            data = this.removeNullVals(data)
+            let ret_data = []
+
             if (added) {
                 const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
                 data = [...data, { id: startingAddedId, ...added }];
-                console.log(data)
                 this.setData(data)
             }
             if (changed) {
@@ -50,15 +51,20 @@ class MainCalendar extends React.PureComponent {
                 this.updateData(data)
             }   
             if (deleted !== undefined) {
-                data = data.filter(appointment => appointment.id !== deleted);
-                this.deleteData(deleted)
+                this.data = data.filter(appointment => appointment.id !== deleted);
+                this.deleteData(deleted,data)
+                ret_data = this.data
             }
+            
+            if(ret_data!=[]){
+                data = ret_data
+            }
+
             return { data }; 
         });
     }
 
     setData(data_json){
-        alert("Form Submitted!")
         const submit = () => {
             fetch("/add", {
                 method: "post",
@@ -75,7 +81,6 @@ class MainCalendar extends React.PureComponent {
     }
 
     updateData(data_json){
-        alert("Form Updated!")
         const submit = () => {
             fetch("/update", {
                 method: "put",
@@ -91,7 +96,7 @@ class MainCalendar extends React.PureComponent {
         submit()
     }
 
-    deleteData(id){
+    deleteData(id,data_json){
         const submit = () => {
             fetch("/del", {
                 method: "delete",
@@ -102,6 +107,9 @@ class MainCalendar extends React.PureComponent {
             })
                 .then((res) => {
                     return res.json()
+                })
+                .catch((e) => {
+                    console.log("ERROR DELETING: " + e)
                 })
         };
         submit()
@@ -115,29 +123,30 @@ class MainCalendar extends React.PureComponent {
         })
     }
 
+    removeNullVals(A){
+        return A.filter(elem => elem!=null)
+    }
 
-      render() {
+    
+    render() {
         const { currentDate, data } = this.state;
         
 
+        let pure_data = this.removeNullVals(data)
         return (
-
             <Paper>
                 <Scheduler
-                data={this.state.data}
-                >
+                data={pure_data}>
                 <ViewState
-                        defaultCurrentDate={currentDate}
-                    />
+                        defaultCurrentDate={currentDate}/>
                 <EditingState
-                        onCommitChanges={this.commitChanges}
-                    />
+                        onCommitChanges={this.commitChanges}/>
                 <IntegratedEditing /> 
                 <MonthView />
                 <ConfirmationDialog />
                 <Toolbar />
                 <DateNavigator />
-                <TodayButton />
+                <TodayButton />          
                 <Appointments />
                 <AppointmentTooltip
                         showOpenButton
