@@ -36,7 +36,7 @@ All the code was written with the best Code Editor in the World... VSCode! :)
 
 <p>In order to run, use:</p>
 
-```
+```sh
 # Clone Repository
 git clone https://github.com/Hackagroup/Gasper
 cd Gasper
